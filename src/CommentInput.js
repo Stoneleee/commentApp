@@ -15,10 +15,6 @@ class CommentInput extends Component {
 		}
 	}
 
-	componentDidMount () {
-		this.textarea.focus()
-	}
-
 	handleUsernameChange (event){
 		this.setState({
 			username: event.target.value
@@ -35,8 +31,12 @@ class CommentInput extends Component {
 		this._loadUsername()
 	}
 
+    componentDidMount () {
+        this.textarea.focus()
+    }
+
 	_loadUsername (){
-		const username = localStorage.getItem('username')
+		const username = localStorage.getItem('username');
 		if(username){
 			this.setState({username})
 		}
