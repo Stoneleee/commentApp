@@ -33,7 +33,7 @@ class CommentApp extends Component {
 		if(!comment.username) return alert('请输入用户名');
 		if(!comment.content) return alert('请输入评论内容');
 		const comments = this.state.comments;
-		comments.push(comment);
+		comments.unshift(comment);
 		this.setState({comments});
 		this._saveComments(comments)
 	}
