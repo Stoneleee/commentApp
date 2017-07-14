@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 
 class Comment extends Component{
 
-	static propTypes = {
+	static propTypes = {     //用于类型检测，
 		comment: PropTypes.object.isRequired,
 		onDeleteComment: PropTypes.func,
 		index: PropTypes.number
 	};
 
-	constructor (){
+	constructor (){   //初始化 评论时间
 		super();
 		this.state = { timeString: ''}
 	}
 
-	componentWillMount (){
+	componentWillMount (){    // 更新留言时间显示，每5秒  刷新一次
 		this._updateTimeString();
 		this._timer = setInterval(
 			this._updateTimeString.bind(this),
@@ -36,7 +36,7 @@ class Comment extends Component{
 		})
 	}
 
-	_getProcessedContent (content){
+	_getProcessedContent (content){  // 利用正则表达式， 添加code标签功能  同时转义其他html标签，取消其他html标签的作用
 		return content
 			.replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
