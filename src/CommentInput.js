@@ -11,7 +11,8 @@ class CommentInput extends Component {
 		super();
 		this.state = {
 			username: '',
-			content: ''
+			content: '',
+			status: true,
 		}
 	}
 
@@ -42,24 +43,29 @@ class CommentInput extends Component {
 		}
 	}
 
-	_saveUsername (username){
+	_saveUsername = (username) => {
 		localStorage.setItem('username', username)
-	}
+	};
 
 	handleUsernameBlur (event) {
 		this._saveUsername(event.target.value)
 	}
 
-	handleSubmit (){
+	handleSubmit = () => {
 		if(this.props.onSubmit){
 			this.props.onSubmit({
 				username: this.state.username,
 				content: this.state.content,
-				createdTime: + new Date()
+				createdTime: + new Date(),
 			})
 		}
 		this.setState({content: ''})
-	}
+	};
+
+	handleClosed = () => {
+		this.handleSubmit();
+
+	};
 
 	render(){
 		return (
@@ -86,7 +92,8 @@ class CommentInput extends Component {
 				</div>
 
 				<div className="comment-field-button">
-				  <button onClick={this.handleSubmit.bind(this)}>发布</button>
+				  <button onClick={this.handleSubmit}>提交</button>
+				  <button onClick={this.handleClosed}>关闭并提交</button>
 				</div>
 			</div>
 		)

@@ -11,7 +11,9 @@ class Comment extends Component{
 
 	constructor (){   //初始化 评论时间
 		super();
-		this.state = { timeString: ''}
+		this.state = {
+			timeString: '',
+		}
 	}
 
 	componentWillMount (){    // 更新留言时间显示，每5秒  刷新一次
@@ -36,7 +38,8 @@ class Comment extends Component{
 		})
 	}
 
-	_getProcessedContent (content){  // 利用正则表达式， 添加code标签功能  同时转义其他html标签，取消其他html标签的作用
+    // 利用正则表达式， 添加code标签功能  同时转义其他html标签，取消其他html标签的作用
+	_getProcessedContent = (content) => {
 		return content
 			.replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
@@ -44,7 +47,7 @@ class Comment extends Component{
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;")
 			.replace(/`([\S\s]+?)`/g, '<code>$1</code>')
-	}
+	};
 
 	handleDeleteComment (){
 		if(this.props.onDeleteComment){
