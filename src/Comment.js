@@ -3,20 +3,23 @@ import PropTypes from 'prop-types'
 
 class Comment extends Component{
 
-	static propTypes = {     //用于类型检测，
+    //用于类型检测
+	static propTypes = {
 		comment: PropTypes.object.isRequired,
 		onDeleteComment: PropTypes.func,
 		index: PropTypes.number
 	};
 
-	constructor (){   //初始化 评论时间
+    //初始化 评论时间
+	constructor (){
 		super();
 		this.state = {
 			timeString: '',
 		}
 	}
 
-	componentWillMount (){    // 更新留言时间显示，每5秒  刷新一次
+	// 更新留言时间显示，每5秒  刷新一次
+	componentWillMount (){
 		this._updateTimeString();
 		this._timer = setInterval(
 			this._updateTimeString.bind(this),
