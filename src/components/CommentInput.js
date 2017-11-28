@@ -4,15 +4,16 @@ import  PropTypes from 'prop-types'
 class CommentInput extends Component {
 
     static propTypes = {
-        onSubmit: PropTypes.func
+        username: PropTypes.string,
+        onSubmit: PropTypes.func,
+        onUserNameInputBlur: PropTypes.func
     };
 
 	constructor (){
 		super();
 		this.state = {
-			username: '',
+			username: this.props.username,
 			content: '',
-			status: true,
 		}
 	}
 
@@ -28,27 +29,14 @@ class CommentInput extends Component {
 		})
 	}
 
-	componentWillMount () {
-		this._loadUsername()
-	}
-
     componentDidMount () {
         this.textarea.focus()
     }
 
-	_loadUsername (){
-		const username = localStorage.getItem('username');
-		if(username){
-			this.setState({username})
-		}
-	}
-
-	_saveUsername = (username) => {
-		localStorage.setItem('username', username)
-	};
-
 	handleUsernameBlur (event) {
-		this._saveUsername(event.target.value)
+		if (this.props.onUserNameInputBlur) {
+		    this.props.onUserNameInputBlur(event.target.value);
+        }
 	}
 
 	handleSubmit = () => {
@@ -60,11 +48,6 @@ class CommentInput extends Component {
 			})
 		}
 		this.setState({content: ''})
-	};
-
-	handleClosed = () => {
-		this.handleSubmit();
-
 	};
 
 	render(){
@@ -93,7 +76,6 @@ class CommentInput extends Component {
 
 				<div className="comment-field-button">
 				  <button onClick={this.handleSubmit}>提交</button>
-				  <button onClick={this.handleClosed}>关闭并提交</button>
 				</div>
 			</div>
 		)

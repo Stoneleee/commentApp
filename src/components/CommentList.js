@@ -26,7 +26,7 @@ class CommentList extends Component{
 				{this.props.comments.map((comment,i) =>
 					<Comment
 						comment={comment}
-						key={i}
+						key={comment.time}
 						index={i}
 						onDeleteComment={this.handleDeleteComment.bind(this)} />
 				)}
