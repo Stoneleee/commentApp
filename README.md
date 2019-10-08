@@ -1,6 +1,6 @@
 此项目是用[Create React App](https://github.com/facebookincubator/create-react-app)构建。、
 
-参考了胡子大哈的[《react小书》](http://huziketang.mangojuice.top/books/react/)
+“参考了”胡子大哈的[《react小书》](http://huziketang.mangojuice.top/books/react/)
 
 ## 基本使用流程
 
