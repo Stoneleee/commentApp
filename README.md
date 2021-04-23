@@ -10,4 +10,6 @@
 - `npm run build` 或 `yarn run build` 打包生成product版本.
 <br>
 
+## 支持jenkins自动构建
+
 
